@@ -1,16 +1,17 @@
-import {TextField} from "@mui/material";
+import { TextField } from '@mui/material'
 
-const Search = ()=>{
-  return(
-  <TextField
-    required
-    id="country"
-    label="Country"
-    InputLabelProps={{
-      shrink: true,
-    }}
-    variant="standard"
-  />)
+const Search = () => {
+  return (
+    <TextField
+      required
+      id='country'
+      label='Country'
+      InputLabelProps={{
+        shrink: true,
+      }}
+      variant='standard'
+    />
+  )
 }
 
-export default Search;
+export default Search
