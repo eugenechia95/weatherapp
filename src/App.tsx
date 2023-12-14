@@ -1,8 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import {Button, createTheme, ThemeProvider} from "@mui/material";
 import {lime, orange, purple} from "@mui/material/colors";
+import Search from "./components/Search/Search";
 
 declare module '@mui/material/styles' {
   interface Theme {
@@ -32,6 +32,7 @@ function App() {
     <ThemeProvider theme={theme}>
     <div className="App">
         <Button variant="contained">Primary</Button>
+        <Search/>
     </div>
     </ThemeProvider>
   );
