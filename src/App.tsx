@@ -32,7 +32,9 @@ function App() {
     <ThemeProvider theme={theme}>
       <div className='App'>
         <Button variant='contained'>Primary</Button>
-        <Search />
+        <div>
+          <Search />
+        </div>
       </div>
     </ThemeProvider>
   )
