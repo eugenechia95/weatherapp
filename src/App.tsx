@@ -43,6 +43,7 @@ function App() {
       ...(mode === 'light'
         ? {
             // palette values for light mode
+            primary: { main: 'rgba(108, 64, 181, 1)' },
             backgroundImage: 'url(/bg-light.png)',
             background: {
               paper: 'rgba(255, 255, 255, 0.2)',
