@@ -62,6 +62,9 @@ function App() {
             background: {
               paper: 'rgba(255, 255, 255, 0.2)',
             },
+            text: {
+              primary: '#000',
+            },
           }
         : {
             // palette values for dark mode
