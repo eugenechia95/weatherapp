@@ -35,17 +35,17 @@ function App() {
     status: {
       danger: orange[500],
     },
+    typography: {
+      fontFamily: 'NotoSans',
+    },
     palette: {
       mode,
       ...(mode === 'light'
         ? {
             // palette values for light mode
-            primary: amber,
-            divider: amber[200],
             backgroundImage: 'url(/bg-light.png)',
-            text: {
-              primary: grey[900],
-              secondary: grey[800],
+            background: {
+              paper: 'rgba(255, 255, 255, 0.2)',
             },
           }
         : {
