@@ -4,7 +4,7 @@ import { Box, Button, IconButton, Stack, styled, TextField, useTheme } from '@mu
 import SearchIcon from '@mui/icons-material/Search'
 import ClearIcon from '@mui/icons-material/Clear'
 
-const SearchButton = styled(Button)(({}) => ({
+const SearchButton = styled(Button)(() => ({
   padding: '0.81rem',
   borderRadius: '1.25rem',
   width: '3.75rem',
