@@ -18,6 +18,8 @@
 ![WeatherAppArchitecture.png](WeatherAppArchitecture.png)
 
 ## Prerequisites
+- Node v16.0 and above
+- Npm v8.19 and above
 - Create a `.env` file and add in these two env variables
 ```
 REACT_APP_API_KEY = YOURAPIKEY
