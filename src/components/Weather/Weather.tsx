@@ -65,7 +65,7 @@ const Weather = () => {
               }}
             >
               <Typography sx={{ fontWeight: 'bold' }} color={theme.palette.weatherDetailsColor}>
-                {`${city}, ${country}`}
+                {`${data.name}, ${data?.sys.country}`}
               </Typography>
               <Typography color={theme.palette.weatherDetailsColor}>
                 {dayjs(timestamp).format('DD-MM-YYYY h:mm A')}

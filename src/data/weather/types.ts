@@ -20,4 +20,8 @@ export type WeatherResponse = {
     temp_max: number
     humidity: number
   }
+  name: string
+  sys: {
+    country: string
+  }
 }
