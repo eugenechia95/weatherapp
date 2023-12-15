@@ -1,4 +1,5 @@
 export const isValidInput = (value: string) => {
-  const regex = /^([^0-9])*$/
-  return regex.test(value)
+  const nonNumberRegex = /^([^0-9])*$/
+  const allWhitespaceRegex = /^(\s)+$/
+  return !allWhitespaceRegex.test(value) && nonNumberRegex.test(value)
 }

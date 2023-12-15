@@ -1,7 +1,7 @@
 import { isValidInput } from './ValidationUtils'
 
 describe('ValidationUtils', () => {
-  it.each(['singapore', 'united states', 'u.s.'])(
+  it.each(['singapore', 'united states', 'u.s.', ''])(
     'should return true when input is valid',
     (input) => {
       const result = isValidInput(input)
@@ -9,7 +9,7 @@ describe('ValidationUtils', () => {
     },
   )
 
-  it.each(['sing1apore', 'unit2 states1', '123'])(
+  it.each(['sing1apore', 'unit2 states1', '123', '   '])(
     'should return false when input is invalid',
     (input) => {
       const result = isValidInput(input)
