@@ -6,9 +6,8 @@ export const getWeatherData = async ({
   queryKey,
 }: QueryFunctionContext<[string, WeatherDataRequest]>) => {
   const [_key, { country, city }] = queryKey
-  console.log('here')
   const response = await apiClient.get(
-    `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&units=metric&appid=${'67d75b8142ddf316a64aff5603f8e154'}`,
+    `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&units=metric&appid=${process.env['REACT_APP_API_KEY']}`,
   )
   return response.data
   // return {
