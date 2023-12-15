@@ -2,6 +2,9 @@ import { Box, Button, Stack, styled, Typography, useTheme } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import DeleteIcon from '@mui/icons-material/Delete'
 import React from 'react'
+import { SearchRequest } from '../../data/searchRequest/types'
+import dayjs from 'dayjs'
+import { useLocalStorage, writeStorage } from '@rehooks/local-storage'
 
 const SearchHistoryButton = styled(Button)(() => ({
   borderRadius: '50%',
@@ -11,8 +14,32 @@ const SearchHistoryButton = styled(Button)(() => ({
   padding: 0,
   backgroundColor: 'white',
 }))
-const SearchHistoryRecord = () => {
+
+const SearchHistoryRecord = ({
+  country,
+  city,
+  timestamp,
+  index,
+}: SearchRequest & { index: number }) => {
   const theme = useTheme()
+
+  const [searchRequests] = useLocalStorage('weatherRecords', [])
+
+  const handleDelete = () => {
+    const newSearchRequests: SearchRequest[] = [...searchRequests]
+    newSearchRequests.splice(index, 1)
+    writeStorage('weatherRecords', newSearchRequests)
+  }
+
+  const handleSearch = () => {
+    const newRequest: SearchRequest = {
+      country,
+      city,
+      timestamp: new Date(),
+    }
+    const newSearchRequests: SearchRequest[] = [newRequest, ...searchRequests]
+    writeStorage('weatherRecords', newSearchRequests)
+  }
 
   return (
     <Box
@@ -42,10 +69,10 @@ const SearchHistoryRecord = () => {
         }}
       >
         <Typography color='textPrimary' align={'left'}>
-          Johor, MY
+          {`${city}, ${country}`}
         </Typography>
         <Typography color='textSecondary' align={'left'}>
-          01-09-2022 09:41am
+          {dayjs(timestamp).format('DD-MM-YYYY h:mm A')}
         </Typography>
       </Box>
       <Box
@@ -57,10 +84,10 @@ const SearchHistoryRecord = () => {
           gap: '1rem',
         }}
       >
-        <SearchHistoryButton>
+        <SearchHistoryButton onClick={handleSearch}>
           <SearchIcon sx={{ fontSize: '1rem' }} color='secondary' />
         </SearchHistoryButton>
-        <SearchHistoryButton>
+        <SearchHistoryButton onClick={handleDelete}>
           <DeleteIcon sx={{ fontSize: '1rem' }} color='secondary' />
         </SearchHistoryButton>
       </Box>

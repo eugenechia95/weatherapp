@@ -92,6 +92,7 @@ function App() {
           sx={{
             backgroundImage: theme.palette.backgroundImage,
             height: '100%',
+            minHeight: '100vh',
             backgroundSize: 'cover',
           }}
         >

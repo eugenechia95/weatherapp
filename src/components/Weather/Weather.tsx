@@ -64,7 +64,7 @@ const Weather = () => {
           width: '40%',
           minWidth: '10rem',
           right: 0,
-          top: { xs: '-15%', sm: '-20%' },
+          top: { xs: '-15%', sm: '-10%' },
           zIndex: 999,
         }}
         alt='Cloud'
