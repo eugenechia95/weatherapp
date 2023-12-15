@@ -62,6 +62,10 @@ const Weather = () => {
                   xs: 'column',
                   sm: 'row',
                 },
+                textAlign: {
+                  xs: 'right',
+                  sm: 'left',
+                },
               }}
             >
               <Typography sx={{ fontWeight: 'bold' }} color={theme.palette.weatherDetailsColor}>
