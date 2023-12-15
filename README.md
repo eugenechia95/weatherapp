@@ -17,6 +17,13 @@
 ## Architecture:
 ![WeatherAppArchitecture.png](WeatherAppArchitecture.png)
 
+## Prerequisites
+- Create a `.env` file and add in these two env variables
+```
+REACT_APP_API_KEY = YOURAPIKEY
+REACT_APP_BASEURL = 'https://api.openweathermap.org/data/2.5/'
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
