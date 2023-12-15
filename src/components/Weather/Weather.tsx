@@ -88,10 +88,10 @@ const Weather = () => {
             component='img'
             sx={{
               position: 'absolute',
-              width: '40%',
+              width: { xs: '4rem', sm: '40%' },
               minWidth: '10rem',
               right: 0,
-              top: { xs: '-7rem', sm: '-4rem' },
+              top: { xs: '-6.8rem', sm: '-4rem' },
               zIndex: 999,
             }}
             alt={data?.weather[0].id === 800 ? 'Sun' : 'Cloud'}
