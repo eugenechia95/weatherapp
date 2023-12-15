@@ -1,6 +1,21 @@
-# Getting Started with Create React App
+# Weather App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Requirements:
+- User should be able to search for weather based on city and country
+    - Pressing search will trigger the search
+    - Clearing search will clear search inputs
+    - Invalid search results will be displayed on UI when user inputs invalid city or country.
+- Searched records will be displayed under search history
+    - Pressing search icon will retrigger search
+    - Pressing discard icon will remove record
+- Searched Weather Information will be displayed on main page
+- User can toggle between light and dark mode
+
+## Assumptions:
+- City and Country names cannot contain numbers
+
+## Architecture:
+![WeatherAppArchitecture.png](WeatherAppArchitecture.png)
 
 ## Available Scripts
 

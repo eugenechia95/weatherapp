@@ -2,7 +2,7 @@ import { Alert, Box, Stack, Typography, useTheme } from '@mui/material'
 import Cloud from './../../assets/cloud.png'
 import Sun from './../../assets/sun.png'
 import { useWeatherDataHook } from '../../data/weather/WeatherDataHook'
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { AppContext, AppContextType } from '../../context/AppContext'
 import dayjs from 'dayjs'
 
