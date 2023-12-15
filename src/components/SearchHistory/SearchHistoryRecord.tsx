@@ -6,6 +6,7 @@ import dayjs from 'dayjs'
 import { useLocalStorage, writeStorage } from '@rehooks/local-storage'
 import { WeatherRequest } from '../../data/weather/types'
 import { AppContext, AppContextType } from '../../context/AppContext'
+import { useWeatherDataHook } from '../../data/weather/WeatherDataHook'
 
 const SearchHistoryButton = styled(Button)(() => ({
   borderRadius: '50%',
@@ -26,6 +27,11 @@ const SearchHistoryRecord = ({
   const { setCountry, setTimestamp, setCity } = useContext(AppContext) as AppContextType
 
   const [searchRequests] = useLocalStorage('weatherRecords', [])
+  const { country: appCountry, city: appCity } = useContext(AppContext) as AppContextType
+  const { data } = useWeatherDataHook({
+    country: appCountry,
+    city: appCity,
+  })
 
   const handleDelete = () => {
     const newSearchRequests: WeatherRequest[] = [...searchRequests]

@@ -2,13 +2,17 @@ import { Alert, Box, Stack, Typography, useTheme } from '@mui/material'
 import Cloud from './../../assets/cloud.png'
 import Sun from './../../assets/sun.png'
 import { useWeatherDataHook } from '../../data/weather/WeatherDataHook'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { AppContext, AppContextType } from '../../context/AppContext'
 import dayjs from 'dayjs'
 
 const Weather = () => {
   const { country, city, timestamp } = useContext(AppContext) as AppContextType
-  const { data, isSuccess, isError, error } = useWeatherDataHook({ country: country, city: city })
+  const { data, isSuccess, isError, error } = useWeatherDataHook({
+    country: country,
+    city: city,
+  })
+
   const theme = useTheme()
 
   return (
