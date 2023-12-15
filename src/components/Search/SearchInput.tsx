@@ -1,5 +1,5 @@
 import React from 'react'
-import { styled, TextField, TextFieldProps, useTheme } from '@mui/material'
+import { styled, TextField, useTheme } from '@mui/material'
 import { isValidInput } from '../../utils/ValidationUtils'
 
 type SearchInputProps = {

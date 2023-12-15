@@ -1,4 +1,4 @@
-import { Box, Button, Stack, styled, Typography, useTheme } from '@mui/material'
+import { Box, Button, styled, Typography, useTheme } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import DeleteIcon from '@mui/icons-material/Delete'
 import React, { useContext } from 'react'

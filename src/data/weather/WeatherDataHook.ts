@@ -1,6 +1,6 @@
 import { getWeatherData } from './api'
 import { useQuery, UseQueryResult } from '@tanstack/react-query'
-import { WeatherDataRequest, WeatherRequest, WeatherResponse } from './types'
+import { WeatherDataRequest, WeatherResponse } from './types'
 
 export const useWeatherDataHook = ({
   country,

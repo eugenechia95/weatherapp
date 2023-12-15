@@ -1,15 +1,6 @@
 import React, { useContext, useState } from 'react'
 import SearchInput from './SearchInput'
-import {
-  Box,
-  Button,
-  FormControl,
-  IconButton,
-  Stack,
-  styled,
-  TextField,
-  useTheme,
-} from '@mui/material'
+import { Button, Stack, styled } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import ClearIcon from '@mui/icons-material/Clear'
 import { useLocalStorage, writeStorage } from '@rehooks/local-storage'
@@ -24,15 +15,13 @@ const SearchButton = styled(Button)(() => ({
   height: '3.75rem',
 }))
 const Search = () => {
-  const theme = useTheme()
   const [searchRequests] = useLocalStorage('weatherRecords', [])
   const { setCountry, setTimestamp, setCity } = useContext(AppContext) as AppContextType
 
   const [countryInput, setCountryInput] = useState('')
   const [cityInput, setCityInput] = useState('')
 
-  const handleClick = () => {
-    console.log('handled')
+  const handleSubmit = () => {
     const current = new Date()
     const newRequest: WeatherRequest = {
       country: countryInput,
@@ -63,7 +52,7 @@ const Search = () => {
             !countryInput || !cityInput || !isValidInput(countryInput) || !isValidInput(cityInput)
           }
           type={'submit'}
-          onClick={handleClick}
+          onClick={handleSubmit}
         >
           <SearchIcon sx={{ fontSize: '2.125rem' }} />
         </SearchButton>

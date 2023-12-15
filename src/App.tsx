@@ -1,25 +1,10 @@
 import React from 'react'
 import './App.css'
-import { Box, Button, Container, createTheme, ThemeProvider, useTheme } from '@mui/material'
-import { amber, deepOrange, grey, lime, orange, purple } from '@mui/material/colors'
+import { Box, Button, Container, createTheme, ThemeProvider } from '@mui/material'
 import Header from './sections/Header'
 import MainContent from './sections/MainContent'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { AppContextProvider } from './context/AppContext'
-
-declare module '@mui/material/styles' {
-  interface Theme {
-    status: {
-      danger: string
-    }
-  }
-  // allow configuration using `createTheme`
-  interface ThemeOptions {
-    status?: {
-      danger?: string
-    }
-  }
-}
 
 declare module '@mui/material/styles/createPalette' {
   interface Palette {
@@ -30,10 +15,7 @@ declare module '@mui/material/styles/createPalette' {
   }
 }
 
-let theme = createTheme({
-  // Theme customization goes here as usual, including tonalOffset and/or
-  // contrastThreshold as the augmentColor() function relies on these
-})
+let theme = createTheme({})
 
 const queryClient = new QueryClient()
 
@@ -44,9 +26,6 @@ function App() {
   }
 
   theme = createTheme(theme, {
-    status: {
-      danger: orange[500],
-    },
     typography: {
       fontFamily: 'NotoSans',
     },
