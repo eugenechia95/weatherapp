@@ -1,16 +1,22 @@
-import { Box, Button, Stack, styled, Typography, useTheme } from '@mui/material'
+import { Alert, Box, Button, Stack, styled, Typography, useTheme } from '@mui/material'
 import Cloud from './../../assets/cloud.png'
+import Sun from './../../assets/sun.png'
 import { useWeatherDataHook } from '../../data/weather/WeatherDataHook'
 import { useContext } from 'react'
 import { AppContext, AppContextType } from '../../context/AppContext'
+import dayjs from 'dayjs'
+import { AxiosError } from 'axios'
 
 const Weather = () => {
-  const { country, city } = useContext(AppContext) as AppContextType
-  const { data, isSuccess } = useWeatherDataHook({ country: country, city: city })
+  const { country, city, timestamp } = useContext(AppContext) as AppContextType
+  const { data, isSuccess, isError, error } = useWeatherDataHook({ country: country, city: city })
   const theme = useTheme()
+  console.log(error)
+  console.log(data)
 
   return (
     <Box>
+      {isError && <Alert severity='error'>{(error as any).response.data.message}</Alert>}
       {isSuccess && (
         <Box>
           <Box
@@ -33,9 +39,9 @@ const Weather = () => {
                   lineHeight: '1.2',
                 }}
               >
-                {data?.main.temp}
+                {`${data?.main.temp}°`}
               </Typography>
-              <Typography color='textPrimary'>{`H: ${data?.main.temp_max} L: ${data?.main.temp_min}`}</Typography>
+              <Typography color='textPrimary'>{`H: ${data?.main.temp_max}° L: ${data?.main.temp_min}°`}</Typography>
             </Stack>
             <Box
               sx={{
@@ -59,9 +65,11 @@ const Weather = () => {
               }}
             >
               <Typography sx={{ fontWeight: 'bold' }} color={theme.palette.weatherDetailsColor}>
-                Johor, MY
+                {`${city}, ${country}`}
               </Typography>
-              <Typography color={theme.palette.weatherDetailsColor}>01-09-2022 09:41am</Typography>
+              <Typography color={theme.palette.weatherDetailsColor}>
+                {dayjs(timestamp).format('DD-MM-YYYY h:mm A')}
+              </Typography>
               <Typography
                 color={theme.palette.weatherDetailsColor}
               >{`Humidity: ${data?.main.humidity}%`}</Typography>
@@ -80,8 +88,8 @@ const Weather = () => {
               top: { xs: '-7rem', sm: '-4rem' },
               zIndex: 999,
             }}
-            alt='Cloud'
-            src={Cloud}
+            alt={data?.weather[0].id === 800 ? 'Sun' : 'Cloud'}
+            src={data?.weather[0].id === 800 ? Sun : Cloud}
           />
         </Box>
       )}

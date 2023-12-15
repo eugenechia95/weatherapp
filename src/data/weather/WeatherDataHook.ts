@@ -10,5 +10,6 @@ export const useWeatherDataHook = ({
     queryKey: ['weatherData', { country, city }],
     queryFn: getWeatherData,
     enabled: !!country && !!city,
+    retry: 0,
   })
 }
