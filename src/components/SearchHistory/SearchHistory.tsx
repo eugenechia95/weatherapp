@@ -1,14 +1,14 @@
 import { Stack, Typography, useTheme } from '@mui/material'
 import SearchHistoryRecord from './SearchHistoryRecord'
-import { SearchRequest } from '../../data/searchRequest/types'
 import { useLocalStorage } from '@rehooks/local-storage'
+import { WeatherRequest } from '../../data/weather/types'
 
 const SearchHistory = () => {
   const theme = useTheme()
   const [searchRequests] = useLocalStorage('weatherRecords', [])
 
   const renderSearchHistoryRecords = () => {
-    return (searchRequests as SearchRequest[]).map((request, index) => {
+    return (searchRequests as WeatherRequest[]).map((request, index) => {
       return (
         <SearchHistoryRecord
           index={index}

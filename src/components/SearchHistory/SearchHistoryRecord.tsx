@@ -1,10 +1,11 @@
 import { Box, Button, Stack, styled, Typography, useTheme } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import DeleteIcon from '@mui/icons-material/Delete'
-import React from 'react'
-import { SearchRequest } from '../../data/searchRequest/types'
+import React, { useContext } from 'react'
 import dayjs from 'dayjs'
 import { useLocalStorage, writeStorage } from '@rehooks/local-storage'
+import { WeatherRequest } from '../../data/weather/types'
+import { AppContext, AppContextType } from '../../context/AppContext'
 
 const SearchHistoryButton = styled(Button)(() => ({
   borderRadius: '50%',
@@ -20,25 +21,30 @@ const SearchHistoryRecord = ({
   city,
   timestamp,
   index,
-}: SearchRequest & { index: number }) => {
+}: WeatherRequest & { index: number }) => {
   const theme = useTheme()
+  const { setCountry, setTimestamp, setCity } = useContext(AppContext) as AppContextType
 
   const [searchRequests] = useLocalStorage('weatherRecords', [])
 
   const handleDelete = () => {
-    const newSearchRequests: SearchRequest[] = [...searchRequests]
+    const newSearchRequests: WeatherRequest[] = [...searchRequests]
     newSearchRequests.splice(index, 1)
     writeStorage('weatherRecords', newSearchRequests)
   }
 
   const handleSearch = () => {
-    const newRequest: SearchRequest = {
+    const current = new Date()
+    const newRequest: WeatherRequest = {
       country,
       city,
-      timestamp: new Date(),
+      timestamp: current,
     }
-    const newSearchRequests: SearchRequest[] = [newRequest, ...searchRequests]
+    const newSearchRequests: WeatherRequest[] = [newRequest, ...searchRequests]
     writeStorage('weatherRecords', newSearchRequests)
+    setCountry(country)
+    setCity(city)
+    setTimestamp(current)
   }
 
   return (

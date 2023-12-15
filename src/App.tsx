@@ -4,6 +4,8 @@ import { Box, Button, Container, createTheme, ThemeProvider, useTheme } from '@m
 import { amber, deepOrange, grey, lime, orange, purple } from '@mui/material/colors'
 import Header from './sections/Header'
 import MainContent from './sections/MainContent'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { AppContextProvider } from './context/AppContext'
 
 declare module '@mui/material/styles' {
   interface Theme {
@@ -33,8 +35,8 @@ let theme = createTheme({
   // contrastThreshold as the augmentColor() function relies on these
 })
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const ColorModeContext = React.createContext(() => {})
+const queryClient = new QueryClient()
+
 function App() {
   const [mode, setMode] = React.useState<'light' | 'dark'>('light')
   const toggleColorMode = () => {
@@ -86,32 +88,34 @@ function App() {
   })
 
   return (
-    <ColorModeContext.Provider value={toggleColorMode}>
+    <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
-        <Box
-          sx={{
-            backgroundImage: theme.palette.backgroundImage,
-            height: '100%',
-            minHeight: '100vh',
-            backgroundSize: 'cover',
-          }}
-        >
-          <Button
-            variant='contained'
-            onClick={toggleColorMode}
-            sx={{ position: 'absolute', left: '1rem', top: '1rem' }}
+        <AppContextProvider>
+          <Box
+            sx={{
+              backgroundImage: theme.palette.backgroundImage,
+              height: '100%',
+              minHeight: '100vh',
+              backgroundSize: 'cover',
+            }}
           >
-            Toggle Theme
-          </Button>
-          <Container maxWidth='md' sx={{ padding: '4.8rem 1rem' }}>
-            <div>
-              <Header />
-              <MainContent />
-            </div>
-          </Container>
-        </Box>
+            <Button
+              variant='contained'
+              onClick={toggleColorMode}
+              sx={{ position: 'absolute', left: '1rem', top: '1rem' }}
+            >
+              Toggle Theme
+            </Button>
+            <Container maxWidth='md' sx={{ padding: '4.8rem 1rem' }}>
+              <div>
+                <Header />
+                <MainContent />
+              </div>
+            </Container>
+          </Box>
+        </AppContextProvider>
       </ThemeProvider>
-    </ColorModeContext.Provider>
+    </QueryClientProvider>
   )
 }
 

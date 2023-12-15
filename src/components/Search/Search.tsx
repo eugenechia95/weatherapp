@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import SearchInput from './SearchInput'
 import { Box, Button, IconButton, Stack, styled, TextField, useTheme } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import ClearIcon from '@mui/icons-material/Clear'
-import { SearchRequest } from '../../data/searchRequest/types'
 import { useLocalStorage, writeStorage } from '@rehooks/local-storage'
+import { WeatherRequest } from '../../data/weather/types'
+import { AppContext, AppContextType } from '../../context/AppContext'
 
 const SearchButton = styled(Button)(() => ({
   padding: '0.81rem',
@@ -15,29 +16,34 @@ const SearchButton = styled(Button)(() => ({
 const Search = () => {
   const theme = useTheme()
   const [searchRequests] = useLocalStorage('weatherRecords', [])
+  const { setCountry, setTimestamp, setCity } = useContext(AppContext) as AppContextType
 
-  const [country, setCountry] = useState('')
-  const [city, setCity] = useState('')
+  const [countryInput, setCountryInput] = useState('')
+  const [cityInput, setCityInput] = useState('')
 
   const handleClick = () => {
-    const newRequest: SearchRequest = {
-      country,
-      city,
-      timestamp: new Date(),
+    const current = new Date()
+    const newRequest: WeatherRequest = {
+      country: countryInput,
+      city: cityInput,
+      timestamp: current,
     }
-    const newSearchRequests: SearchRequest[] = [newRequest, ...searchRequests]
+    const newSearchRequests: WeatherRequest[] = [newRequest, ...searchRequests]
     writeStorage('weatherRecords', newSearchRequests)
+    setCountry(countryInput)
+    setCity(cityInput)
+    setTimestamp(current)
     handleClear()
   }
   const handleClear = () => {
-    setCountry('')
-    setCity('')
+    setCountryInput('')
+    setCityInput('')
   }
 
   return (
     <Stack spacing={2} direction='row'>
-      <SearchInput inputState={country} setInputState={setCountry} label={'Country'} />
-      <SearchInput inputState={city} setInputState={setCity} label={'City'} />
+      <SearchInput inputState={countryInput} setInputState={setCountryInput} label={'Country'} />
+      <SearchInput inputState={cityInput} setInputState={setCityInput} label={'City'} />
       <SearchButton aria-label='search' variant='contained' onClick={handleClick}>
         <SearchIcon sx={{ fontSize: '2.125rem' }} />
       </SearchButton>
