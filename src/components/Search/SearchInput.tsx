@@ -9,7 +9,7 @@ type SearchInputProps = {
 }
 
 const SearchInputTextField = styled(TextField)<{ backgroundColor: string }>(
-  ({ backgroundColor }) => ({
+  ({ theme, backgroundColor }) => ({
     flexGrow: 1,
     backgroundColor: backgroundColor,
     borderRadius: '1.25rem',
@@ -20,6 +20,16 @@ const SearchInputTextField = styled(TextField)<{ backgroundColor: string }>(
       fontSize: '0.625rem',
       transform: 'none',
       lineHeight: '1.8',
+    },
+    [theme.breakpoints.down('sm')]: {
+      padding: '0.19rem 0.75rem',
+      '& label': {
+        top: '0.19rem',
+        left: '0.75rem',
+        fontSize: '0.625rem',
+        transform: 'none',
+        lineHeight: '1.8',
+      },
     },
   }),
 )

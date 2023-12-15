@@ -24,7 +24,7 @@ const SearchHistory = () => {
   return (
     <Stack
       sx={{
-        padding: '1.44rem 1.62rem',
+        padding: { xs: '1rem', sm: '1.44rem 1.62rem' },
         borderRadius: '1.5rem',
         backgroundColor: theme.palette.mainBackground,
       }}

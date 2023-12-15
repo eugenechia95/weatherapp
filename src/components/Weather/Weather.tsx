@@ -27,6 +27,7 @@ const Weather = () => {
                 sm: 'block',
               },
               justifyContent: 'space-between',
+              gap: '1rem',
             }}
           >
             <Stack spacing={2} sx={{ position: 'relative' }}>
@@ -34,7 +35,7 @@ const Weather = () => {
               <Typography
                 color={theme.palette.weatherColor}
                 sx={{
-                  fontSize: { xs: '4rem', sm: '7rem' },
+                  fontSize: { xs: '2rem', sm: '7rem' },
                   fontWeight: 'bold',
                   marginTop: '0!important',
                   lineHeight: '1.2',

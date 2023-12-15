@@ -9,7 +9,7 @@ const MainContent = () => {
     <Stack
       gap={4}
       sx={{
-        padding: '2.8rem 3rem',
+        padding: { xs: '1.6rem 1.25rem', sm: '2.8rem 3rem' },
         borderRadius: '2.5rem',
         border: '1px solid rgba(255, 255, 255, 0.20)',
         backdropFilter: 'blur(10px)',

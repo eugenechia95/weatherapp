@@ -42,7 +42,7 @@ const Search = () => {
 
   return (
     <form>
-      <Stack spacing={2} direction='row'>
+      <Stack spacing={{ xs: 1, sm: 2 }} direction='row'>
         <SearchInput inputState={countryInput} setInputState={setCountryInput} label={'Country'} />
         <SearchInput inputState={cityInput} setInputState={setCityInput} label={'City'} />
         <SearchButton

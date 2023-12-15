@@ -58,7 +58,7 @@ const SearchHistoryRecord = ({
       sx={{
         display: 'flex',
         backgroundColor: theme.palette.background.paper,
-        padding: '1.3rem',
+        padding: { xs: '1rem', sm: '1.3rem' },
         borderRadius: '1rem',
         alignItems: 'center',
         gap: '1rem',
