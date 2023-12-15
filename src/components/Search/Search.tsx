@@ -6,6 +6,7 @@ import ClearIcon from '@mui/icons-material/Clear'
 import { useLocalStorage, writeStorage } from '@rehooks/local-storage'
 import { WeatherRequest } from '../../data/weather/types'
 import { AppContext, AppContextType } from '../../context/AppContext'
+import { isValidInput } from '../../utils/ValidationUtils'
 
 const SearchButton = styled(Button)(() => ({
   padding: '0.81rem',
@@ -44,10 +45,22 @@ const Search = () => {
     <Stack spacing={2} direction='row'>
       <SearchInput inputState={countryInput} setInputState={setCountryInput} label={'Country'} />
       <SearchInput inputState={cityInput} setInputState={setCityInput} label={'City'} />
-      <SearchButton aria-label='search' variant='contained' onClick={handleClick}>
+      <SearchButton
+        aria-label='search'
+        variant='contained'
+        disabled={
+          !countryInput || !cityInput || !isValidInput(countryInput) || !isValidInput(cityInput)
+        }
+        onClick={handleClick}
+      >
         <SearchIcon sx={{ fontSize: '2.125rem' }} />
       </SearchButton>
-      <SearchButton aria-label='clear' variant='contained' onClick={handleClear}>
+      <SearchButton
+        aria-label='clear'
+        variant='contained'
+        onClick={handleClear}
+        disabled={!countryInput && !cityInput}
+      >
         <ClearIcon sx={{ fontSize: '2.125rem' }} />
       </SearchButton>
     </Stack>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { styled, TextField, TextFieldProps, useTheme } from '@mui/material'
+import { isValidInput } from '../../utils/ValidationUtils'
 
 type SearchInputProps = {
   label: string
@@ -27,6 +28,8 @@ const SearchInput = (props: SearchInputProps) => {
 
   return (
     <SearchInputTextField
+      error={!isValidInput(props.inputState)}
+      helperText={!isValidInput(props.inputState) && 'Input is invalid'}
       backgroundColor={theme.palette.background.paper}
       required
       id={props.label}
