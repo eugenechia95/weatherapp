@@ -104,7 +104,7 @@ function App() {
               onClick={toggleColorMode}
               sx={{ position: 'absolute', left: '1rem', top: '1rem' }}
             >
-              Toggle Theme
+              {`${theme.palette.mode} Theme`}
             </Button>
             <Container maxWidth='md' sx={{ padding: '4.8rem 1rem' }}>
               <div>
