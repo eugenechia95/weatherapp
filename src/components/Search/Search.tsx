@@ -1,6 +1,15 @@
 import React, { useContext, useState } from 'react'
 import SearchInput from './SearchInput'
-import { Box, Button, IconButton, Stack, styled, TextField, useTheme } from '@mui/material'
+import {
+  Box,
+  Button,
+  FormControl,
+  IconButton,
+  Stack,
+  styled,
+  TextField,
+  useTheme,
+} from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import ClearIcon from '@mui/icons-material/Clear'
 import { useLocalStorage, writeStorage } from '@rehooks/local-storage'
@@ -23,6 +32,7 @@ const Search = () => {
   const [cityInput, setCityInput] = useState('')
 
   const handleClick = () => {
+    console.log('handled')
     const current = new Date()
     const newRequest: WeatherRequest = {
       country: countryInput,
@@ -42,28 +52,31 @@ const Search = () => {
   }
 
   return (
-    <Stack spacing={2} direction='row'>
-      <SearchInput inputState={countryInput} setInputState={setCountryInput} label={'Country'} />
-      <SearchInput inputState={cityInput} setInputState={setCityInput} label={'City'} />
-      <SearchButton
-        aria-label='search'
-        variant='contained'
-        disabled={
-          !countryInput || !cityInput || !isValidInput(countryInput) || !isValidInput(cityInput)
-        }
-        onClick={handleClick}
-      >
-        <SearchIcon sx={{ fontSize: '2.125rem' }} />
-      </SearchButton>
-      <SearchButton
-        aria-label='clear'
-        variant='contained'
-        onClick={handleClear}
-        disabled={!countryInput && !cityInput}
-      >
-        <ClearIcon sx={{ fontSize: '2.125rem' }} />
-      </SearchButton>
-    </Stack>
+    <form>
+      <Stack spacing={2} direction='row'>
+        <SearchInput inputState={countryInput} setInputState={setCountryInput} label={'Country'} />
+        <SearchInput inputState={cityInput} setInputState={setCityInput} label={'City'} />
+        <SearchButton
+          aria-label='search'
+          variant='contained'
+          disabled={
+            !countryInput || !cityInput || !isValidInput(countryInput) || !isValidInput(cityInput)
+          }
+          type={'submit'}
+          onClick={handleClick}
+        >
+          <SearchIcon sx={{ fontSize: '2.125rem' }} />
+        </SearchButton>
+        <SearchButton
+          aria-label='clear'
+          variant='contained'
+          onClick={handleClear}
+          disabled={!countryInput && !cityInput}
+        >
+          <ClearIcon sx={{ fontSize: '2.125rem' }} />
+        </SearchButton>
+      </Stack>
+    </form>
   )
 }
 
